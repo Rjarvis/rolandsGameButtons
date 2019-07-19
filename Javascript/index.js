@@ -103,9 +103,11 @@ function gameLoop() {
 
   if(buttonPressed(gp.buttons[10])){
     ball.style.backgroundColor = 'blue';
+    field.style.backgroundColor = 'red';
   }
   if(buttonPressed(gp.buttons[11])){ //Right Bumper
     ball.style.backgroundColor = 'green';
+    field.style.backgroundColor = 'purple';
   }
 
   ball.style.left = a*2 + "px";

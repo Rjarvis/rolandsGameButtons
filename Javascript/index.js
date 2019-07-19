@@ -80,9 +80,31 @@ function gameLoop() {
   if(buttonPressed(gp.buttons[4])){
     ball.style.backgroundColor = 'blue';
   }
-  if(buttonPressed(gp.buttons[5])){
+  if(buttonPressed(gp.buttons[5])){ //Right Bumper
     ball.style.backgroundColor = 'green';
   }
+
+  if(buttonPressed(gp.buttons[6])){ // Left Trigger
+    ball.style.backgroundColor = 'blue';
+  }
+  if(buttonPressed(gp.buttons[7])){ //Right Trigger
+    ball.style.backgroundColor = 'green';
+  }
+
+  if(buttonPressed(gp.buttons[8])){// Back btn
+    ball.style.backgroundColor = 'blue'; 
+  }
+  if(buttonPressed(gp.buttons[9])){ //Start btn
+    ball.style.backgroundColor = 'green';
+  }
+
+  if(buttonPressed(gp.buttons[10])){
+    ball.style.backgroundColor = 'blue';
+  }
+  if(buttonPressed(gp.buttons[11])){ //Right Bumper
+    ball.style.backgroundColor = 'green';
+  }
+
   ball.style.left = a*2 + "px";
   ball.style.top = b*2 + "px";
 

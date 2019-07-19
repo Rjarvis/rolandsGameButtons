@@ -1,6 +1,7 @@
 
 var gamepadInfo = document.getElementById('gamepad-info');
 var ball = document.getElementById("ball");
+const field = document.querySelector("body");
 var start;
 var a = 0;
 var b = 0;
@@ -15,13 +16,13 @@ var rAFStop = window.mozCancelRequestAnimationFrame ||
 
 window.addEventListener("gamepadconnected", function() {
   var gp = navigator.getGamepads()[0];
-  gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
+  gamepadInfo.textContent = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
 
   gameLoop();
 });
 
 window.addEventListener("gamepaddisconnected", function() {
-  gamepadInfo.innerHTML = "Waiting for gamepad.";
+  gamepadInfo.textContent = "Waiting for gamepad.";
 
   rAFStop(start);
 });
@@ -85,10 +86,12 @@ function gameLoop() {
   }
 
   if(buttonPressed(gp.buttons[6])){ // Left Trigger
-    ball.style.backgroundColor = 'blue';
+    ball.style.backgroundColor = 'yellow';
+    field.style.backgroundColor = 'purple';
   }
   if(buttonPressed(gp.buttons[7])){ //Right Trigger
-    ball.style.backgroundColor = 'green';
+    ball.style.backgroundColor = 'purple';
+    field.style.backgroundColor = 'yellow';
   }
 
   if(buttonPressed(gp.buttons[8])){// Back btn

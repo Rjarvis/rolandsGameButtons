@@ -53,9 +53,9 @@ function buttonPressed(b) {
 
 function axisTilt(a){
     if (typeof(a) == "object"){
-        return a.pressed;
+        return a.tilt;
     }
-    return a == 1.0;
+    return a;
 }
 
 function gameLoop() {
@@ -99,15 +99,77 @@ function gameLoop() {
   }
   if(buttonPressed(gp.buttons[9])){ //Start btn
     ball.style.backgroundColor = 'green';
+    console.log('Game Buttons',gp.buttons);
+    console.log('Game Pad', gp);
   }
 
-  if(buttonPressed(gp.buttons[10])){
+  if(buttonPressed(gp.buttons[10])){ //Left Stick Click
     ball.style.backgroundColor = 'blue';
     field.style.backgroundColor = 'red';
   }
-  if(buttonPressed(gp.buttons[11])){ //Right Bumper
+  if(buttonPressed(gp.buttons[11])){ //Right stick Click
     ball.style.backgroundColor = 'green';
     field.style.backgroundColor = 'purple';
+  }
+
+  if(buttonPressed(gp.buttons[12])){ //Up Arrow
+    b--
+  }
+
+  if(buttonPressed(gp.buttons[13])){ //Down Arrow
+    b++
+  }
+
+  if(buttonPressed(gp.buttons[14])){
+    a--;
+  }
+
+  if(buttonPressed(gp.buttons[15])){
+    a++;
+  }
+  const deadZone = 0.0999;
+  const left_X_Axes = gp.axes[0];
+  const left_Y_Axes = gp.axes[1];
+  const right_X_Axes = gp.axes[2];
+  const right_Y_Axes = gp.axes[3];
+  let ballWidth = ball.style.width;
+
+  if(axisTilt(right_X_Axes)){ 
+    if(Math.abs(right_X_Axes) > deadZone){
+      a = a + right_X_Axes;
+      console.log("Right X Axis", right_X_Axes); 
+    }else if(Math.abs(right_X_Axes) < deadZone){
+      a = a;
+    }
+  }
+
+  if(axisTilt(right_Y_Axes)){ 
+    if(Math.abs(right_Y_Axes) > deadZone){
+      b = b + right_Y_Axes;
+      console.log("Right Y Axis", right_Y_Axes); 
+    }else if(Math.abs(right_Y_Axes) < deadZone){
+      b = b;
+    }
+  }
+  
+  if(axisTilt(left_X_Axes)){
+    if(Math.abs(left_X_Axes) > deadZone) {
+      a = a + left_X_Axes;
+      console.log('Left X Axis', left_X_Axes);
+
+    } else if(Math.abs(left_X_Axes) < deadZone){
+      a = a;
+    }
+  }
+
+  if(axisTilt(left_Y_Axes)){
+    if(Math.abs(left_Y_Axes) > deadZone) {
+      b = b + left_Y_Axes;
+      console.log('Left Y Axis', left_Y_Axes);
+
+    } else if(Math.abs(left_Y_Axes) < deadZone){
+      b = b;
+    }
   }
 
   ball.style.left = a*2 + "px";
